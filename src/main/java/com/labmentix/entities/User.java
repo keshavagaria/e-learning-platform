@@ -1,17 +1,23 @@
 package com.labmentix.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.labmentix.enums.RoleType;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class User {
 
     @Id
@@ -27,4 +33,12 @@ public class User {
     private String profession;
     private String linkedin_url;
     private String github_url;
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    @Enumerated(EnumType.STRING)
+    private Set<RoleType> roles = new HashSet<>();
+
+    @OneToMany(targetEntity = Course.class,cascade = CascadeType.ALL)
+    @ToString.Exclude
+    private List<Course> enrolledCourses=new ArrayList<>();
 }
