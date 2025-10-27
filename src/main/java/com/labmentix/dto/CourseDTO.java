@@ -1,4 +1,4 @@
 package com.labmentix.dto;
 
-public class CouseDTO {
+public class CourseDTO {
 }
