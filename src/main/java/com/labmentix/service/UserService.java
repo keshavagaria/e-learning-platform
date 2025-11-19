@@ -46,7 +46,7 @@ public class UserService {
         if(dbUser!=null && user.getPassword().equals(dbUser.get().getPassword())){
             user.setId(dbUser.get().getId());
             user.setUsername(dbUser.get().getUsername());
-            user.setRoles(dbUser.get().getRoles());
+          //  user.setRoles(dbUser.get().getRoles());
             return true;
         }
         return false;
