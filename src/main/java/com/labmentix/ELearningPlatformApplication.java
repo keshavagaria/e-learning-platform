@@ -1,7 +1,6 @@
 package com.labmentix;
 
-import com.labmentix.entities.Question;
-import com.labmentix.repository.QuizRepository;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

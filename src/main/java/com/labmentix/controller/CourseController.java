@@ -1,10 +1,7 @@
 package com.labmentix.controller;
 
-import com.labmentix.config.UserInfoUserDetails;
 import com.labmentix.entities.Course;
 import com.labmentix.service.CourseService;
-import com.labmentix.service.EmailSenderService;
-import com.labmentix.service.EnrollmentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
@@ -25,11 +22,11 @@ public class CourseController {
     @Autowired
     private CourseService courseService;
 
-    @Autowired
-    private EnrollmentService enrollmentService;
-
-    @Autowired
-    private EmailSenderService emailSenderService;
+//    @Autowired
+//    private EnrollmentService enrollmentService;
+//
+//    @Autowired
+//    private EmailSenderService emailSenderService;
 
     @GetMapping("/courses")
     public String getAllCourses(Model model) {
@@ -61,45 +58,45 @@ public class CourseController {
         return courseService.updateCourse(id, updatedCourse);
     }
 
-    @DeleteMapping("/{id}")
-    public void deleteCourse(@PathVariable Long id) {
-        courseService.deleteCourse(id);
-    }
-
-    @PostMapping("/{courseId}/enroll")
-    public String enroll(@PathVariable Long courseId, Authentication authentication) {
-
-        String username=null;
-        String email=null;
-        if(authentication==null) {
-            return "redirect:/api/course/courses?fail";
-        }
-        else {
-            Object principal = authentication.getPrincipal();
-            if (principal instanceof UserInfoUserDetails) {
-               username = ((UserInfoUserDetails) principal).getUsername();
-                email = ((UserInfoUserDetails) principal).getEmail();
-                // use id
-            }
-        }
-
-        enrollmentService.enrollUserInCourse(username, courseId);
-        log.info("username :"+username);
-      //  sendMail(email,courseId);
-        return "redirect:/api/course/courses?success";
-    }
+//    @DeleteMapping("/{id}")
+//    public void deleteCourse(@PathVariable Long id) {
+//        courseService.deleteCourse(id);
+//    }
+//
+//    @PostMapping("/{courseId}/enroll")
+//    public String enroll(@PathVariable Long courseId, Authentication authentication) {
+//
+//        String username=null;
+//        String email=null;
+//        if(authentication==null) {
+//            return "redirect:/api/course/courses?fail";
+//        }
+//        else {
+//            Object principal = authentication.getPrincipal();
+//            if (principal instanceof UserInfoUserDetails) {
+//               username = ((UserInfoUserDetails) principal).getUsername();
+//                email = ((UserInfoUserDetails) principal).getEmail();
+//                // use id
+//            }
+//        }
+//
+//        enrollmentService.enrollUserInCourse(username, courseId);
+//        log.info("username :"+username);
+//      //  sendMail(email,courseId);
+//        return "redirect:/api/course/courses?success";
+//    }
 
   //  @EventListener(ApplicationReadyEvent.class)
-    public void sendMail(String email,Long courseId){
-        Course course =  courseService.getCourseById(courseId);
-        emailSenderService.sendMail(email,
-                        "Course Enrollment Notification",
-                    "You have enrolled for the course "+course+ "on "+ LocalDate.now());
-    }
-
-    @GetMapping("/quiz")
-    public String getCourseQuiz() {
-
-        return "courses/quiz";
-    }
+//    public void sendMail(String email,Long courseId){
+//        Course course =  courseService.getCourseById(courseId);
+//        emailSenderService.sendMail(email,
+//                        "Course Enrollment Notification",
+//                    "You have enrolled for the course "+course+ "on "+ LocalDate.now());
+//    }
+//
+//    @GetMapping("/quiz")
+//    public String getCourseQuiz() {
+//
+//        return "courses/quiz";
+//    }
 }

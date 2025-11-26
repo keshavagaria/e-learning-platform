@@ -27,17 +27,17 @@ public class Course {
     private String instructor;
     private String description;
 
-    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
-    @ToString.Exclude
-    private List<CourseSection> lessons;
-
-    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
-    @JsonIgnore
-    private List<Feedback> feedbacks;
-
-    @OneToMany()
-    @JsonIgnore
-    private List<Question> questions;
+//    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
+//    @ToString.Exclude
+//    private List<CourseSection> lessons;
+//
+//    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
+//    @JsonIgnore
+//    private List<Feedback> feedbacks;
+//
+//    @OneToMany()
+//    @JsonIgnore
+//    private List<Question> questions;
 
     @ManyToOne
 //    @JoinColumn(name = "id")
