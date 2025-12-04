@@ -75,6 +75,18 @@
                                 <span id="errpassword" style="font-size: 10px; color: red;"></span>
                             </p>
 
+                            <p style="margin-bottom: 10px;margin-top: 10px;'">
+                                <label th:style="'margin-bottom:0;font-size: 16px; color: #212529; font-family: myProductFont;'">Role</label>
+                                <select name="roles"  class="form-control">
+                                    <option value="">-- Select Role --</option>
+
+                                    <option th:each="r : ${roles}"
+                                            th:value="${r.id}"
+                                            th:text="${r.role}">
+                                    </option>
+                                </select>
+                                <span id="errpassword2" style="font-size: 10px; color: red;"></span>
+                            </p>
 
                             <div class="row">
                                 <div class="col-lg-6">

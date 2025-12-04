@@ -20,8 +20,8 @@ public class MyUserDetails implements UserDetails {
     public MyUserDetails(User user) {
         this.username=user.getUsername();
         this.password=user.getPassword();
-        this.authorities= Arrays.stream(user.getRoles().split(","))
-                .map(SimpleGrantedAuthority::new)
+        this.authorities= user.getRoles().stream()
+                .map(role->new SimpleGrantedAuthority("ROLE_"+role))
                 .collect(Collectors.toList());
     }
 

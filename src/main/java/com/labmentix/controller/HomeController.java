@@ -1,6 +1,7 @@
 package com.labmentix.controller;
 
 import com.labmentix.entities.User;
+import com.labmentix.service.RoleTypeService;
 import com.labmentix.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -11,6 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class HomeController {
+
+    @Autowired
+    private RoleTypeService roleTypeService;
 
     @Autowired
     private UserService userService;
@@ -33,19 +37,20 @@ public class HomeController {
     @GetMapping("/home")
     public String home2(){
 
-        return "user-dashboard";
+        return "student-dashboard";
     }
 
     @GetMapping("/signup")
     public String signUp(Model model){
 
+        model.addAttribute("roles", roleTypeService.getAllRoles());
         model.addAttribute("user",new User());
         return "sign-up";
     }
 
     @PostMapping("/do_register")
     public String createUser(User user) {
-        //System.out.println("Role " + user.getRoles());
+        System.out.println("RoleType " + user.getRoles());
         user.setPassword(encoder.encode(user.getPassword()));
         userService.createUser(user);
         return "sign-up";

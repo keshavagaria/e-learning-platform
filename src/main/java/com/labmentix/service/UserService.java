@@ -25,7 +25,7 @@ public class UserService {
     }
 
     public User createUser(User user) {
-        user.setRoles("ADMIN");
+        //user.setRoles("ADMIN");
         User savedUser = userRepository.save(user);
         return savedUser;
     }

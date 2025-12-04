@@ -1,7 +1,6 @@
 package com.labmentix.entities;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.labmentix.enums.RoleType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -34,11 +33,13 @@ public class User {
     private String linkedin_url;
     private String github_url;
 
-//    @ElementCollection(fetch = FetchType.EAGER)
-//    @Enumerated(EnumType.STRING)
-//    private Set<RoleType> roles = new HashSet<>();
+    @OneToMany(fetch = FetchType.EAGER)
+    //@Enumerated(EnumType.STRING)
+    private Set<RoleType> roles = new HashSet<>();
 
-    private String roles;
+
+
+    //private String roles;
 
     @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
     @ToString.Exclude

@@ -28,6 +28,8 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+
+
 //    @Autowired
 //    private JWTService jwtService;
 
@@ -49,7 +51,7 @@ public class UserController {
 
     @PostMapping("/add")
     public String createUser(User user) {
-        //System.out.println("Role " + user.getRoles());
+        //System.out.println("RoleType " + user.getRoles());
         user.setPassword(encoder.encode(user.getPassword()));
 
         userService.createUser(user);
