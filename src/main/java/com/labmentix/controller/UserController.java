@@ -12,6 +12,7 @@ import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -30,8 +31,8 @@ public class UserController {
 //    @Autowired
 //    private JWTService jwtService;
 
-//    @Autowired
-//    private PasswordEncoder encoder;
+    @Autowired
+    private PasswordEncoder encoder;
 
 //    @Autowired
 //    private AuthenticationProvider authenticationProvider;
@@ -49,7 +50,8 @@ public class UserController {
     @PostMapping("/add")
     public String createUser(User user) {
         //System.out.println("Role " + user.getRoles());
-        //user.setPassword(encoder.encode(user.getPassword()));
+        user.setPassword(encoder.encode(user.getPassword()));
+
         userService.createUser(user);
         return "user saved successfully";
     }

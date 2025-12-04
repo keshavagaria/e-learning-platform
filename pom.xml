@@ -127,6 +127,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
+		<finalName>e-learning-app</finalName>
 	</build>
 
 </project>

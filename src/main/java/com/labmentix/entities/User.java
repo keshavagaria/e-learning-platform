@@ -1,6 +1,7 @@
 package com.labmentix.entities;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.labmentix.enums.RoleType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -37,7 +38,9 @@ public class User {
 //    @Enumerated(EnumType.STRING)
 //    private Set<RoleType> roles = new HashSet<>();
 
-    @OneToMany(targetEntity = Course.class,cascade = CascadeType.ALL)
+    private String roles;
+
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
     @ToString.Exclude
     private List<Course> enrolledCourses=new ArrayList<>();
 }

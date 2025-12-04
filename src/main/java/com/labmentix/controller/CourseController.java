@@ -58,10 +58,10 @@ public class CourseController {
         return courseService.updateCourse(id, updatedCourse);
     }
 
-//    @DeleteMapping("/{id}")
-//    public void deleteCourse(@PathVariable Long id) {
-//        courseService.deleteCourse(id);
-//    }
+    @DeleteMapping("/{id}")
+    public void deleteCourse(@PathVariable Long id) {
+        courseService.deleteCourse(id);
+    }
 //
 //    @PostMapping("/{courseId}/enroll")
 //    public String enroll(@PathVariable Long courseId, Authentication authentication) {

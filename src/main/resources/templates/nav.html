@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>alert</title>
@@ -21,7 +21,7 @@
         <img src="/image/logo-trim-navbar.png">
 
         <!-- For Guest -->
-        <div class="nav-item active" th:if="!${session.user}">
+        <div class="nav-item active" sec:authorize="!isAuthenticated()">
             <div style="display: flex; align-items: center;"> <!-- Added align-items: center -->
                 <a th:href="@{/}"   class="nav-path"  style="margin: 0 10px; color: #000000; text-decoration: none; font-size: 18px; text-transform: uppercase;" href="#">Home</a>
                 <a th:href="@{/search}" class="nav-path" style="margin: 0 10px; color: #000000; text-decoration: none; font-size: 18px; text-transform: uppercase;" href="#">Search</a>
@@ -30,7 +30,7 @@
                 <a th:href="@{/abdur}" class="nav-path"  style="margin: 0 10px; color: #000000; text-decoration: none; font-size: 18px; text-transform: uppercase;" href="#">About Us</a>
                 <a th:href="@{/signup}" class="nav-path"  style="margin: 0 10px; color: #000000; text-decoration: none; font-size: 18px; text-transform: uppercase;" href="#">Signup</a>
                 <a th:href="@{/login}"  style=" color: #FFFFFF; text-decoration: none; font-size: 18px; text-transform: uppercase; padding: 0.5rem 0.85rem; background-color: #6674CC; border: 1px solid #6674CC; border-radius: 0.375rem; display: flex; align-items: center;" href="#">
-                    Login
+                    Loginnn
                     <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="ml-2 text-xl" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
                         <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
                         <polyline points="10 17 15 12 10 7"></polyline>
@@ -41,8 +41,8 @@
         </div>
 
         <!-- For User -->
-        <span th:if="${session.user}" th:switch="${session.user.role}">
-            <span th:case="'user'">
+        <span sec:authorize="isAuthenticated()">
+<!--            <span th:case="'user'">-->
                 <div class="nav-item active">
                     <div style="display: flex; align-items: center;"> <!-- Added align-items: center -->
                         <a th:href="@{/}" class="nav-path"   style="margin: 0 10px; color: #000000; text-decoration: none; font-size: 18px; text-transform: uppercase;" href="#">Home</a>
@@ -61,12 +61,12 @@
                         </a>
                     </div>
                 </div>
-            </span>
+<!--            </span>-->
 
             <!-- For Admin -->
-            <span th:case="'admin'">
+         <!--   <span th:case="'admin'">
                 <div class="nav-item active">
-                    <div style="display: flex; align-items: center;"> <!-- Added align-items: center -->
+                    <div style="display: flex; align-items: center;"> &lt;!&ndash; Added align-items: center &ndash;&gt;
                         <a th:href="@{/}" class="nav-path"  style="margin: 0 10px; color: #000000; text-decoration: none; font-size: 18px; text-transform: uppercase;" href="#">Home</a>
                         <a th:href="@{/search}" class="nav-path"   style="margin: 0 10px; color: #000000; text-decoration: none; font-size: 18px; text-transform: uppercase;" href="#">Search</a>
                         <a th:href="@{/init-add-course}" class="nav-path"  style="margin: 0 10px; color: #000000; text-decoration: none; font-size: 18px; text-transform: uppercase;" href="#">Add Courses</a>
@@ -83,7 +83,7 @@
                         </a>
                     </div>
                 </div>
-            </span>
+            </span>-->
         </span>
     </div>
     <script>
