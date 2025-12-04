@@ -1,6 +1,7 @@
 package com.labmentix.config;
 
 import com.labmentix.entities.User;
+import lombok.ToString;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -10,7 +11,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
-
+@ToString
 public class MyUserDetails implements UserDetails {
 
     private String username;
@@ -21,7 +22,7 @@ public class MyUserDetails implements UserDetails {
         this.username=user.getUsername();
         this.password=user.getPassword();
         this.authorities= user.getRoles().stream()
-                .map(role->new SimpleGrantedAuthority("ROLE_"+role))
+                .map(role->new SimpleGrantedAuthority("ROLE_"+role.getRole()))
                 .collect(Collectors.toList());
     }
 
@@ -59,4 +60,6 @@ public class MyUserDetails implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
+
 }

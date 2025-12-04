@@ -34,11 +34,7 @@ public class HomeController {
         return "login";
     }
 
-    @GetMapping("/home")
-    public String home2(){
 
-        return "student-dashboard";
-    }
 
     @GetMapping("/signup")
     public String signUp(Model model){

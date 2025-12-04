@@ -27,11 +27,14 @@ public class SecurityConfiguration {
 
         return	http.csrf().disable()
                 .authorizeHttpRequests().requestMatchers("/","/login").permitAll()
+                .requestMatchers("/admin/**").hasRole("ADMIN")
+                .requestMatchers("/student/**").hasRole("STUDENT")
+                .requestMatchers("/instructor/**").hasRole("INSTRUCTOR")
                 .anyRequest().permitAll()
                 .and()
                 .formLogin()
                 .loginPage("/login")
-                .defaultSuccessUrl("/home",true)
+                .defaultSuccessUrl("/dashboard",true)
                 .permitAll()
 
                 .and().build();
