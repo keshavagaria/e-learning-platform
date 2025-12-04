@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="base::layout(~{::section})"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title>this is a home page</title>
+</head>
+<body>
+<section th:style="'background-color:white;'">
+
+
+    <h1>    Hello, <span sec:authentication="name"></span> </h1>
+
+
+
+</section>
+</body>
+</html>
+
+
