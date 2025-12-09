@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -17,7 +18,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class User {
+public class User implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,7 +42,7 @@ public class User {
 
     //private String roles;
 
-    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
-    @ToString.Exclude
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+   // @ToString.Exclude
     private List<Course> enrolledCourses=new ArrayList<>();
 }

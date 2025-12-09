@@ -1,5 +1,6 @@
 package com.labmentix.controller;
 
+import com.labmentix.config.MyUserDetails;
 import com.labmentix.entities.Course;
 import com.labmentix.service.CourseService;
 import lombok.extern.slf4j.Slf4j;
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -39,6 +41,14 @@ public class CourseController {
         return "courses/courses";
     }
 
+    @GetMapping("get-course/{id}")
+    public String getCourseById2(@PathVariable Long id,Model model) {
+
+        Course course =  courseService.getCourseById(id);
+        model.addAttribute("courseDetails",course);
+        return "courses/course-details2";
+    }
+
     @GetMapping()
     public String getCourseById(@RequestParam("id") Long id,Model model) {
 
@@ -53,7 +63,8 @@ public class CourseController {
         return courseService.createCourse(course);
     }
 
-    @PostMapping("/{id}")
+
+    @PutMapping("/{id}")
     public Course updateCourse(@PathVariable Long id, @RequestBody Course updatedCourse) {
         return courseService.updateCourse(id, updatedCourse);
     }

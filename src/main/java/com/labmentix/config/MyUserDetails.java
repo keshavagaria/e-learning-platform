@@ -1,6 +1,7 @@
 package com.labmentix.config;
 
 import com.labmentix.entities.User;
+import lombok.Data;
 import lombok.ToString;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -12,13 +13,16 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @ToString
+@Data
 public class MyUserDetails implements UserDetails {
 
+    private Long id;
     private String username;
     private String password;
     private List<GrantedAuthority> authorities;
 
     public MyUserDetails(User user) {
+        this.id=user.getId();
         this.username=user.getUsername();
         this.password=user.getPassword();
         this.authorities= user.getRoles().stream()

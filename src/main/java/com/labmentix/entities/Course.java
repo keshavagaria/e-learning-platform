@@ -8,13 +8,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Course {
+public class Course implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,9 +28,9 @@ public class Course {
     private String instructor;
     private String description;
 
-//    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
-//    @ToString.Exclude
-//    private List<CourseSection> lessons;
+    @OneToMany( cascade = CascadeType.ALL)
+    @ToString.Exclude
+    private List<CourseSection> sections;
 //
 //    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
 //    @JsonIgnore

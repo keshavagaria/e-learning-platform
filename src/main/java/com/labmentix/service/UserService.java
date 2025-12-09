@@ -3,6 +3,9 @@ package com.labmentix.service;
 import com.labmentix.entities.User;
 import com.labmentix.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -20,6 +23,7 @@ public class UserService {
         return userRepository.findAll();
     }
 
+    @Cacheable(cacheNames = "users",key = "#id")
     public User getUserById(Long id) {
         return userRepository.findById(id).orElse(null);
     }
@@ -30,6 +34,7 @@ public class UserService {
         return savedUser;
     }
 
+    @CachePut(cacheNames = "users",key="#id")
     public User updateUser(Long id, User updatedUser) {
         User existingUser = userRepository.findById(id).orElse(null);
         if (existingUser != null) {
@@ -71,6 +76,7 @@ public class UserService {
         return savedUser;
     }
 
+    @CacheEvict(cacheNames = "users",key="#id")
     public void deleteUser(Long id) {
         userRepository.deleteById(id);
     }
